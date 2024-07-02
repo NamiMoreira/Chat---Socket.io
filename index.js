@@ -7,19 +7,13 @@ io.on("connection",(socket) =>{
 
     socket.on("disconnect", () =>{
         console.log("X desconectou: " + socket.id);
+    });
+
+    socket.on("msg", (data) =>{
+        io.emit("showmsg",data);
     })
 
-    socket.on("boasvindas",(data) => {
-        console.log("executando evento de boas vindas")
-        console.log(data)
-    })
-
-    socket.on("palavra", (data =>{
-        console.log(data);
-        socket.emit("resultado", " servidor " + data );
-    }))
-
-})
+});
 
 app.set("view engine","ejs");
 
